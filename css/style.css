@@ -9,6 +9,14 @@ body {
     background: linear-gradient(to bottom, #009788 145px, #DADBD5 145px);
 }
 
+.bg-lightgray {
+    background-color: #EAEAEA;
+}
+
+.text-smaller{
+    font-size: smaller;
+}
+
 .main_container {
     width: 1400px;
     height: 800px;
@@ -68,6 +76,10 @@ img {
     color: #97D3E7;
 }
 
+.element ul li {
+    cursor: pointer;
+}
+
 .container-chat {
     height: calc(100% - 60px);
 }
@@ -82,22 +94,43 @@ img {
     background-color: #F2EFEA;
 }
 
-.my-text {
+.chat-text {
+    min-width: 50px;
+    max-width: 300px;
+    padding: 5px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+}
+
+.sended-text {
     padding: 15px;
     width: 35%;
     display: flex;
     background-color: #d5f9ba;
-    float: left;
+    float: right;
     border-radius: 10px;
     margin: 5px;
+    position: relative;
+    clear: both;
 }
 
-.your-text {
+.received-text {
     padding: 15px;
     width: 35%;
     background-color: white;
     justify-content: flex-end;
     border-radius: 10px;
     margin: 5px;
-    float: right;
+    position: relative;
+    float: left;
+    clear: both;
+}
+
+.msg-time {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 5px;
 }

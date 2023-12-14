@@ -57,9 +57,13 @@
                     <!-- SEZIONE MESSAGGI -->
                     <div class="element">
                         <ul class="list-unstyled mb-0">
-                            <li v-for="contact in contacts" class="border-bottom p-2">
+                            <li v-for="(contact, index) in contacts" class="border-bottom p-2 d-flex position-relative" :class="activeUser === index ? 'bg-lightgray' : ''" @click="changeChat(index)">
                                 <img :src="contact.avatar" :key="index" alt="michele">
-                                <span class="mx-3">{{ contact.name }}</span>
+                                <div>
+                                    <div class="mx-3">{{ contact.name }}</div>
+                                    <div class="mx-3 text-secondary">Ultimo messaggio inviato</div>
+                                </div>
+                                <span class="position-absolute top-0 end-0 px-2 text-secondary text-smaller">12:00</span>
                             </li>
                         </ul>
                     </div>
@@ -74,8 +78,11 @@
                 <div class="header-right d-flex justify-content-between align-items-center px-2">
                     <!-- AVATAR E NOME -->
                     <div class="container-avatar-header-right d-flex align-items-center">
-                        <img src="./img/avatar_1.jpg" alt="avatar_1">
-                        <span class="mx-1">Michele</span>
+                        <img :src="contacts[activeUser].avatar" alt="avatar_1">
+                        <div class="mx-1">
+                            <div>{{ contacts[activeUser].name }}</div>
+                            <div>Ultimo accesso oggi alle 12:00</div>
+                        </div>
                     </div>
 
                     <div class="container-icon-header-right">
@@ -91,14 +98,9 @@
                 <div class="container-chat">
                     <!-- CHAT -->
                     <div class="container-chat-top pt-5 px-5">
-                        <div class="d-flex justify-content-end ">
-                            <h6 class="my-text mx-5">Hai portato a spasso il cane?</h6>
-                        </div>
-                        <div  class="d-flex justify-content-end"> 
-                            <h6 class="my-text mx-5">Ricordati di stendere i panni</h6>
-                        </div>
-                        <div  class="d-flex">
-                            <h6 class="your-text mx-5 float-left">Tutto fatto!</h6>
+                        <div v-for="(message, index) in contacts[activeUser].messages" :class="(message.status == 'sent') ? 'sended-text' : 'received-text'">
+                            {{ message.message }}
+                            <span class="msg-time text-smaller text-secondary">12:00</span>
                         </div>
                     </div>
                     
