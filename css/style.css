@@ -87,6 +87,7 @@ img {
 .container-chat-top {
     height: calc(100% - 70px);
     background-image: url(../img/mine.jpg);
+    overflow-y: scroll;
 }
 
 .container-chat-bot {

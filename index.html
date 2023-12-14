@@ -107,7 +107,7 @@
                     <!-- CONTAINER CHAT-NEW-MESSAGGE -->
                     <div class="container-chat-bot d-flex align-items-center">
                         <i class="fa-regular fa-face-smile mx-4 fs-4 text-secondary"></i>
-                        <input type="text" class="form-control form-control" placeholder="Inserisci il tuo messaggio">
+                        <input type="text" class="form-control form-control" placeholder="Inserisci il tuo messaggio" @keyup.enter="sendMsg" v-model="new_text">
                         <i class="fa-solid fa-microphone mx-4 fs-4 text-secondary"></i>
                     </div>
                 </div>
