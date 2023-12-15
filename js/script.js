@@ -5,6 +5,7 @@ createApp({
         return {
             activeUser: 0,
             new_text: "",
+            search: '',
             contacts: [
                 {
                     name: "Michele",
@@ -196,5 +197,15 @@ createApp({
             }
             this.new_text= '';
         },
+        searchUser(){
+            this.contacts.forEach((element) => {
+                if(element.name.toLowerCase().includes(this.search.toLowerCase())){
+                    element.visible = true;
+                }
+                else{
+                    element.visible = false;
+                }
+            });
+        }
     },
 }).mount("#app");

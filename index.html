@@ -21,8 +21,8 @@
                     
                     <!-- AVATAR E NOME -->
                     <div class="container-avatarIo d-flex align-items-center">
-                        <img src="./img/avatar_io.jpg" alt="io">
-                        <span class="mx-1">Sofia</span>
+                        <img src="./img/avatar_5.jpg" alt="io">
+                        <span class="mx-1">Anthony</span>
                     </div>
                     
                     <!-- HEADER SX ICONE -->
@@ -51,17 +51,17 @@
                     <!-- SEARCH BAR -->
                     <div class="input-group mb-0 p-1">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass text-secondary"></i></span>
-                        <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" aria-label="Username" aria-describedby="basic-addon1" v-model="search" @keyup="searchUser">
                     </div>
 
                     <!-- SEZIONE MESSAGGI -->
                     <div class="element">
                         <ul class="list-unstyled mb-0">
-                            <li v-for="(contact, index) in contacts" class="border-bottom p-2 d-flex position-relative" :class="activeUser === index ? 'bg-lightgray' : ''" @click="changeChat(index)">
+                            <li v-show="contact.visible" v-for="(contact, index) in contacts" class="border-bottom p-2 position-relative" :class="activeUser === index ? 'bg-lightgray' : ''" @click="changeChat(index)">
                                 <img :src="contact.avatar" :key="index" alt="michele">
                                 <div>
                                     <div class="mx-3">{{ contact.name }}</div>
-                                    <div class="mx-3 text-secondary">Ultimo messaggio inviato</div>
+                                    <div class="mx-3 text-secondary text-smaller">{{ contact.messages[contact.messages.length - 1].message }}</div>
                                 </div>
                                 <span class="position-absolute top-0 end-0 px-2 text-secondary text-smaller">12:00</span>
                             </li>
