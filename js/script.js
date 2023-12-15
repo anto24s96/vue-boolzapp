@@ -1,3 +1,4 @@
+const DateTime = luxon.DateTime;
 const { createApp } = Vue;
 
 createApp({
@@ -5,7 +6,7 @@ createApp({
         return {
             activeUser: 0,
             new_text: "",
-            search: '',
+            search: "",
             contacts: [
                 {
                     name: "Michele",
@@ -177,7 +178,7 @@ createApp({
         },
         sendMsg() {
             let obj = {
-                date: "10/01/2020 15:30:55",
+                date: DateTime.local().toFormat('T'),
                 message: this.new_text,
                 status: "sent",
             };
@@ -187,7 +188,7 @@ createApp({
                 this.message = "";
                 setTimeout(() => {
                     let obj = {
-                        date: "10/01/2020 15:30:55",
+                        date: DateTime.local().toFormat('T'),
                         message: "ok",
                         status: "received",
                     };
@@ -195,17 +196,35 @@ createApp({
                     this.contacts[this.activeUser].messages.push(obj);
                 }, 1000);
             }
-            this.new_text= '';
+            this.new_text = "";
         },
-        searchUser(){
+        searchUser() {
             this.contacts.forEach((element) => {
-                if(element.name.toLowerCase().includes(this.search.toLowerCase())){
+                if (element.name.toLowerCase().includes(this.search.toLowerCase())) {
                     element.visible = true;
-                }
-                else{
+                } 
+                else {
                     element.visible = false;
                 }
             });
+        },
+        lastMsg(index){
+            let ult = this.contacts[index].messages;
+            let lastMessage = ult[ult.length - 1]
+
+            return lastMessage.message
+        },
+        lastDatum(index){
+            let ult = this.contacts[index].messages;
+            let lastDate = ult[ult.length - 1]
+
+            return lastDate.date
+        },
+        deleteMsg(index){
+            let validation = confirm("Vuoi eliminare questo messaggio?")
+            if(validation){
+                this.contacts[this.activeUser].messages.splice(index, 1);
+            }
         }
     },
 }).mount("#app");
