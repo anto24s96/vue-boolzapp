@@ -178,7 +178,7 @@ createApp({
         },
         sendMsg() {
             let obj = {
-                date: DateTime.local().toFormat('T'),
+                date: DateTime.local().toFormat("T"),
                 message: this.new_text,
                 status: "sent",
             };
@@ -188,7 +188,7 @@ createApp({
                 this.message = "";
                 setTimeout(() => {
                     let obj = {
-                        date: DateTime.local().toFormat('T'),
+                        date: DateTime.local().toFormat("T"),
                         message: "ok",
                         status: "received",
                     };
@@ -202,29 +202,32 @@ createApp({
             this.contacts.forEach((element) => {
                 if (element.name.toLowerCase().includes(this.search.toLowerCase())) {
                     element.visible = true;
-                } 
-                else {
+                } else {
                     element.visible = false;
                 }
             });
         },
-        lastMsg(index){
-            let ult = this.contacts[index].messages;
-            let lastMessage = ult[ult.length - 1]
+        lastMsg(index) {
+            if (this.contacts[index].messages.length > 0) {
+                let ult = this.contacts[index].messages;
+                let lastMessage = ult[ult.length - 1];
 
-            return lastMessage.message
+                return lastMessage.message;
+            }
         },
-        lastDatum(index){
-            let ult = this.contacts[index].messages;
-            let lastDate = ult[ult.length - 1]
+        lastDatum(index) {
+            if (this.contacts[index].messages.length > 0) {
+                let ult = this.contacts[index].messages;
+                let lastDate = ult[ult.length - 1];
 
-            return lastDate.date
+                return lastDate.date;
+            }
         },
-        deleteMsg(index){
-            let validation = confirm("Vuoi eliminare questo messaggio?")
-            if(validation){
+        deleteMsg(index) {
+            let validation = confirm("Vuoi eliminare questo messaggio?");
+            if (validation) {
                 this.contacts[this.activeUser].messages.splice(index, 1);
             }
-        }
+        },
     },
 }).mount("#app");
